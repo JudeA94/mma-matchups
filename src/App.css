@@ -46,6 +46,15 @@
   background-color: red;
 }
 
-.fighter {
+.drawer {
   background-color: white;
+}
+
+.matchUp {
+  display: flex;
+  flex-direction: horizontal;
+}
+
+.fighter {
+  display: flex;
 }
