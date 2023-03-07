@@ -27,13 +27,13 @@ const MatchUp = ({ fighters }) => {
   }
 
   return (
-    <div class="matchUp">
-      <div class="fighters">
-        <button className={fighter1Class} onClick={handleClickFighter1}>
+    <div className="matchUp">
+      <div className="fighters">
+        <button className={fighter1Class} data-testid="fighter1TestId" onClick={handleClickFighter1}>
           {fighter1.FirstName} {fighter1.LastName}
         </button>
-        <span className="vs">VS</span>
-        <button className={fighter2Class} onClick={handleClickFighter2}>
+        <span className="vs" data-testid="vsTestId">VS</span>
+        <button className={fighter2Class} data-testid="fighter2TestId" onClick={handleClickFighter2}>
           {fighter2.FirstName} {fighter2.LastName}
         </button>
       </div>
