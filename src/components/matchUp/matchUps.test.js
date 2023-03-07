@@ -1,6 +1,6 @@
 import React from 'react'
 import { render, fireEvent } from '@testing-library/react';
-import MatchUp from './MatchUp';
+import MatchUp from './matchUp';
 
 const mockFighters = [
   {
