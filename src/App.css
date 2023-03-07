@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+
+.winner {
+  background-color: green;
+}
+
+.loser {
+  background-color: red;
+}
+
+.fighter {
+  background-color: white;
+}
