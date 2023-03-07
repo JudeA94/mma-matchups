@@ -33,12 +33,12 @@ const getMatchups = () => {
     {schedule && <h1>{schedule[8].Name}</h1>}
     <button onClick={getMatchups}>load fights</button>
     {matchUps && (
-  <>
+  <div className='fightCard'>
     {matchUps.map((fight) => {
       if (fight.Active) return <MatchUp key={fight.FightId} fighters={fight.Fighters} />
       return null;
     })}
-  </>
+  </div>
 )}
     </div>
   );

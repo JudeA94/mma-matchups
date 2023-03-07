@@ -6,31 +6,35 @@ const MatchUp = ({ fighters }) => {
   const [fighter1Class, setFighter1Class] = useState('drawer')
   const [fighter2Class, setFighter2Class] = useState('drawer')
 
-  const handleClickFighter1 = (e) => {
-    setFighter1Class('winner')
-    setFighter2Class('loser')
+  const handleClickFighter1 = () => {
+    if (fighter1Class === 'winner') {
+      setFighter1Class('drawer')
+      setFighter2Class('drawer')
+    } else {
+      setFighter1Class('winner')
+      setFighter2Class('loser')
+    }
   }
 
-  const handleClickFighter2 = (e) => {
-    setFighter2Class('winner')
-    setFighter1Class('loser')
+  const handleClickFighter2 = () => {
+    if (fighter2Class === 'winner') {
+      setFighter1Class('drawer')
+      setFighter2Class('drawer')
+    } else {
+      setFighter2Class('winner')
+      setFighter1Class('loser')
+    }
   }
 
   return (
-    <div className='matchUp'>
-      <div className='fighter'>
-        <button className={fighter1Class} onClick={(e) => handleClickFighter1()}>
-          <h3>
-            {fighter1.FirstName} {fighter1.LastName}
-          </h3>
+    <div class="fight-card">
+      <div class="fighters">
+        <button className={fighter1Class} onClick={handleClickFighter1}>
+          {fighter1.FirstName} {fighter1.LastName}
         </button>
-      </div>
-      vs
-      <div className='fighter'>
-        <button className={fighter2Class} onClick={(e) => handleClickFighter2()}>
-          <h3>
-            {fighter2.FirstName} {fighter2.LastName}
-          </h3>
+        <span className="vs">VS</span>
+        <button className={fighter2Class} onClick={handleClickFighter2}>
+          {fighter2.FirstName} {fighter2.LastName}
         </button>
       </div>
     </div>
