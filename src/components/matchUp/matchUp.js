@@ -27,7 +27,7 @@ const MatchUp = ({ fighters }) => {
   }
 
   return (
-    <div class="fight-card">
+    <div class="matchUp">
       <div class="fighters">
         <button className={fighter1Class} onClick={handleClickFighter1}>
           {fighter1.FirstName} {fighter1.LastName}
