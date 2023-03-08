@@ -38,10 +38,7 @@ const App = () => {
   return (
     <div>
       {schedule && <NavBar schedule={schedule} getMatchups={getMatchups} eventId={eventId} setEventId={setEventId} />}
-      {matchUps && (
-        <div>
-          <FightCard matchUps={matchUps} />
-        </div>
+      {matchUps && (<FightCard matchUps={matchUps} />
       )}
     </div>
   )

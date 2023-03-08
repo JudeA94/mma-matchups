@@ -15,15 +15,15 @@ const NavBar = ({ schedule, eventId, setEventId, getMatchups }) => {
     <div className='navBar'>
       <div className='navChild'>
         {eventIdx > 0 && (
-          <button className='navButton' onClick={() => handleChangeEvent(-1)}>Previous</button>
+          <button className='navButton' data-testid="prevBtnTestId" onClick={() => handleChangeEvent(-1)}>Previous</button>
         )}
       </div>
       <div className='navChild'>
-        <h1 className='eventTitle'>{schedule[eventIdx].Name}</h1>
+        <h1 className='eventTitle' data-testid="eventTitleTestId">{schedule[eventIdx].Name}</h1>
       </div>
       <div className='navChild'>
         {eventIdx < eventsRemaining && (
-          <button className='navButton' onClick={() => handleChangeEvent(+1)}>Next</button>
+          <button className='navButton' data-testid="nextBtnTestId" onClick={() => handleChangeEvent(+1)}>Next</button>
         )}
       </div>
     </div>
