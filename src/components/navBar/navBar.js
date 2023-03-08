@@ -9,7 +9,7 @@ const NavBar = ({ schedule, eventId, setEventId }) => {
     console.log(schedule[eventIdx])
     setEventId(schedule[eventIdx +direction].EventId)
     console.log(eventId)
-  } 
+  }
 
   return (
     <div className='navBar'>
