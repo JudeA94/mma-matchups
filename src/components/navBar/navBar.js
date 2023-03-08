@@ -1,15 +1,15 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 
-const NavBar = ({ schedule, eventId, setEventId }) => {
+const NavBar = ({ schedule, eventId, setEventId, getMatchups }) => {
   const [eventIdx, setEventIdx] = useState(0)
   const eventsRemaining = schedule.length - 1
   
   const handleChangeEvent = (direction) => {
     setEventIdx(eventIdx + direction)
-    console.log(schedule[eventIdx])
-    setEventId(schedule[eventIdx +direction].EventId)
-    console.log(eventId)
+    setEventId(schedule[eventIdx + direction].EventId)
   }
+
+  useEffect(() => getMatchups(eventId),[eventId])
 
   return (
     <div className='navBar'>
