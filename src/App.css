@@ -81,3 +81,36 @@ button {
 .dropdown:hover .dropdown-content {display: block;}
 
 .dropdown:hover .dropbtn {background-color: #3e8e41;}
+
+.navBar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative;
+  padding: 20px;
+}
+
+.navChild {
+  position: relative;
+}
+
+.navButton {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgb(243, 131, 3);
+  width: 300px;
+}
+
+.navChild:first-child .navButton {
+  left: 200px;
+}
+
+.navChild:last-child .navButton {
+  right: 200px;
+}
+
+.eventTitle {
+  margin: 0;
+  text-align: center;
+}
