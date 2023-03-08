@@ -1,8 +1,8 @@
 import { useState } from 'react'
 
 const MatchUp = ({ fighters }) => {
-  const [fighter1, setFighter1] = useState(fighters[0])
-  const [fighter2, setFighter2] = useState(fighters[1])
+  const [fighter1, setFighter1] = useState(fighters[1])
+  const [fighter2, setFighter2] = useState(fighters[0])
   const [fighter1Class, setFighter1Class] = useState('drawer')
   const [fighter2Class, setFighter2Class] = useState('drawer')
   const [method, setMethod] = useState('Method')

@@ -22,6 +22,7 @@ const App = () => {
         setSchedule(upcoming)
         setEventId(upcoming[0].EventId)
         setLoading(false)
+        getMatchups()
       })
       .catch((err) => console.error(err))
       setLoading(false)

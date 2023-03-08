@@ -7,7 +7,7 @@ useState(() => {},[matchUps])
   return (
     <>
       {matchUps.map((fight) => {
-        if (fight.Active)
+        if (fight.Active && fight.Fighters.length)
           return <MatchUp key={fight.FightId} fighters={fight.Fighters} />
         return null
       })}
