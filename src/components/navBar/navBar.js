@@ -2,12 +2,13 @@ import { useState } from 'react'
 
 const NavBar = ({ schedule, eventId, setEventId }) => {
   const [eventIdx, setEventIdx] = useState(0)
-  const today = new Date()
-  const upcoming = schedule.filter((event) => Date.parse(event.Day) > today)
-  const eventsRemaining = upcoming.length - 1
+  const eventsRemaining = schedule.length - 1
+  
   const handleChangeEvent = (direction) => {
     setEventIdx(eventIdx + direction)
-    setEventId(eventId + direction)
+    console.log(schedule[eventIdx])
+    setEventId(schedule[eventIdx +direction].EventId)
+    console.log(eventId)
   } 
 
   return (
@@ -18,7 +19,7 @@ const NavBar = ({ schedule, eventId, setEventId }) => {
         )}
       </div>
       <div className='navChild'>
-        <h1 className='eventTitle'>{upcoming[eventIdx].Name}</h1>
+        <h1 className='eventTitle'>{schedule[eventIdx].Name}</h1>
       </div>
       <div className='navChild'>
         {eventIdx < eventsRemaining && (

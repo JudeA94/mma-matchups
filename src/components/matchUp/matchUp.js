@@ -49,9 +49,9 @@ const MatchUp = ({ fighters }) => {
         >
           {fighter2.FirstName} {fighter2.LastName}
         </button>
-        <div class="dropdown">
-          <button class="dropbtn">{method}</button>
-          <div class="dropdown-content">
+        <div className="dropdown">
+          <button className="dropbtn">{method}</button>
+          <div className="dropdown-content">
             <button onClick={() => setMethod('KO / TKO')}>KO / TKO</button>
             <button onClick={() => setMethod('Submission')}>Submission</button>
             <button onClick={() => setMethod('Decision')}>Decision</button>
