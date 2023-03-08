@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import FightCard from './components/fightCard/fightCard';
+import NavBar from './components/navBar/navBar';
 import './App.css';
 
 const App = () => {
@@ -28,6 +29,7 @@ const getMatchups = () => {
 }
   return (
     <div>
+    {schedule && <NavBar schedule={schedule} setEventId={setEventId}/>}
     <button onClick={getSchedule}>load schedule</button>
     {schedule && <h1>{schedule[8].Name}</h1>}
     <button onClick={getMatchups}>load fights</button>
