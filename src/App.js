@@ -8,6 +8,7 @@ const App = () => {
   const [schedule, setSchedule] = useState(null)
   const [eventId, setEventId] = useState(null)
   const [matchUps, setMatchUps] = useState(null)
+  const [eventName, setEventName] = useState(null)
   const today = new Date()
   const currentYear = today.getFullYear()
   
@@ -32,6 +33,8 @@ const App = () => {
       .then((response) => response.json())
       .then((data) => {
         setMatchUps(data.Fights)
+        console.log(data.Name)
+        setEventName(data.Name)
       })
       .catch((err) => console.error(err))
   }
@@ -41,7 +44,7 @@ const App = () => {
       {schedule && <NavBar schedule={schedule} getMatchups={getMatchups} eventId={eventId} setEventId={setEventId} />}
       {matchUps && (<FightCard matchUps={matchUps} />
       )}
-      <Poster />
+      <Poster eventName={eventName}/>
     </div>
   )
 }
