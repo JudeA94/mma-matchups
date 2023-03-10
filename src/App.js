@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react'
 import FightCard from './components/fightCard/fightCard'
 import NavBar from './components/navBar/navBar'
+import Poster from './components/poster/poster'
 import './App.css'
 
 const App = () => {
@@ -40,6 +41,7 @@ const App = () => {
       {schedule && <NavBar schedule={schedule} getMatchups={getMatchups} eventId={eventId} setEventId={setEventId} />}
       {matchUps && (<FightCard matchUps={matchUps} />
       )}
+      <Poster />
     </div>
   )
 }
