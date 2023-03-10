@@ -1,25 +1,26 @@
 import React, { useState, useEffect } from 'react'
-import findEventTitle from './findEventTitle/findEventTitle'
 
 const Poster = ({eventName}) => {
+  const SerpApi = require('google-search-results-nodejs');
+  const search = new SerpApi.GoogleSearch("d3953621f721fd3b8c17c31058f293152611798d1bb88381df15e522e94a87b0");
   const [posterImage, setPosterImage] = useState(null)
 
+  const getPosterImgSrc = (searchQuery) => {
+    const params = {
+      q: searchQuery + " poster",
+      tbm: "isch",
+      ijn: "0"
+    };
+    console.log(params.q)
+    const callback = function(data) {
+      return data["images_results"][0].original;
+    };
+    search.json(params, callback);
+  }
+
   useEffect(() => {
-    const url = `https://en.wikipedia.org/api/rest_v1/page/media-list/${eventName}?redirect=false`
-    fetch(url, {
-      method: 'GET',
-      headers: {
-        Accept:
-          'application/json; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/Media/1.3.1"',
-      },
-    })
-      .then((response) => response.json())
-      .then((data) => {
-        setPosterImage(data.items[0].srcset[2].src)
-      })
-      .catch((error) => {
-        console.error(error)
-      })
+    const source = getPosterImgSrc(eventName)
+    setPosterImage(source)
   }, [eventName])
 
   return (

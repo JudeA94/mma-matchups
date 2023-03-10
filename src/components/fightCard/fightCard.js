@@ -16,6 +16,7 @@ const FightCard = ({ matchUps }) => {
         }
         return null;
       })}
+      <button onClick={() => console.log('fights saved')}>Save Predictions</button>
     </>
   );
 };
