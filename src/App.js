@@ -2,11 +2,13 @@ import { useEffect, useState } from 'react'
 import FightCard from './components/fightCard/fightCard'
 import NavBar from './components/navBar/navBar'
 import './App.css'
+import Poster from './components/poster/poster'
 
 const App = () => {
   const [schedule, setSchedule] = useState(null)
   const [eventId, setEventId] = useState(null)
   const [matchUps, setMatchUps] = useState(null)
+  const [eventName, setEventName] = useState(null)
   const today = new Date()
   const currentYear = today.getFullYear()
   
@@ -16,8 +18,8 @@ const App = () => {
     )
       .then((response) => response.json())
       .then((data) => {
-        const upcoming = data.filter((event) => Date.parse(event.Day) > today).sort((a,b) => Date.parse(a.Day) - Date.parse(b.Day))
-        setSchedule(upcoming.slice(0,4))
+        const upcoming = data.filter((event) => (Date.parse(event.Day) > today) && event.ShortName.length === 7).sort((a,b) => Date.parse(a.Day) - Date.parse(b.Day))
+        setSchedule(upcoming)
         setEventId(upcoming[0].EventId)
         getMatchups(upcoming[0].EventId)
       })
@@ -31,6 +33,7 @@ const App = () => {
       .then((response) => response.json())
       .then((data) => {
         setMatchUps(data.Fights)
+        setEventName(data.ShortName)
       })
       .catch((err) => console.error(err))
   }
@@ -40,6 +43,7 @@ const App = () => {
       {schedule && <NavBar schedule={schedule} getMatchups={getMatchups} eventId={eventId} setEventId={setEventId} />}
       {matchUps && (<FightCard matchUps={matchUps} />
       )}
+      {eventName && <Poster eventName={eventName} />}
     </div>
   )
 }

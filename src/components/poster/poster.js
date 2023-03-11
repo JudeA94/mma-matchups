@@ -1,30 +1,31 @@
 import React, { useState, useEffect } from 'react'
 
-const Poster = ({eventName}) => {
-  const SerpApi = require('google-search-results-nodejs');
-  const search = new SerpApi.GoogleSearch("d3953621f721fd3b8c17c31058f293152611798d1bb88381df15e522e94a87b0");
+function Poster({eventName}) {
   const [posterImage, setPosterImage] = useState(null)
 
-  const getPosterImgSrc = (searchQuery) => {
-    const params = {
-      q: searchQuery + " poster",
-      tbm: "isch",
-      ijn: "0"
-    };
-    console.log(params.q)
-    const callback = function(data) {
-      return data["images_results"][0].original;
-    };
-    search.json(params, callback);
-  }
-
   useEffect(() => {
-    const source = getPosterImgSrc(eventName)
-    setPosterImage(source)
-  }, [eventName])
+    // Make a GET request to the UFC 274 event page
+    const title = eventName.replace(/\s+/g, "_");
+    const url = `https://en.wikipedia.org/api/rest_v1/page/media-list/${title}?redirect=false`
+    fetch(url, {
+      method: 'GET',
+      headers: {
+        Accept:
+          'application/json; charset=utf-8; profile="https://www.mediawiki.org/wiki/Specs/Media/1.3.1"',
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        console.log(data.items[0].srcset[2].src)
+        setPosterImage(data.items[0].srcset[2].src)
+      })
+      .catch((error) => {
+        console.error(error)
+      })
+  }, [])
 
   return (
-    <div>{posterImage && <img src={posterImage} alt="UFC 274 Poster" />}</div>
+    <div>{posterImage && <img src={posterImage} alt={`${eventName} + poster`} />}</div>
   )
 }
 
