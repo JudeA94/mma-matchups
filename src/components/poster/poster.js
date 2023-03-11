@@ -1,10 +1,9 @@
 import React, { useState, useEffect } from 'react'
 
 function Poster({eventName}) {
-  const [posterImage, setPosterImage] = useState(null)
+  const [posterImageURL, setPosterImageURL] = useState(null)
 
   useEffect(() => {
-    // Make a GET request to the UFC 274 event page
     const title = eventName.replace(/\s+/g, "_");
     const url = `https://en.wikipedia.org/api/rest_v1/page/media-list/${title}?redirect=false`
     fetch(url, {
@@ -16,8 +15,7 @@ function Poster({eventName}) {
     })
       .then((response) => response.json())
       .then((data) => {
-        console.log(data.items[0].srcset[2].src)
-        setPosterImage(data.items[0].srcset[2].src)
+        setPosterImageURL(data.items[0].srcset[2].src)
       })
       .catch((error) => {
         console.error(error)
@@ -25,7 +23,7 @@ function Poster({eventName}) {
   }, [])
 
   return (
-    <div>{posterImage && <img src={posterImage} alt={`${eventName} + poster`} />}</div>
+    <div>{posterImageURL && <img src={posterImageURL} alt={`${eventName} + poster`} />}</div>
   )
 }
 
