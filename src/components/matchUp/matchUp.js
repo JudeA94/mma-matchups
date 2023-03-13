@@ -8,38 +8,43 @@ const MatchUp = ({ fighters }) => {
   const [fighter1Class, setFighter1Class] = useState('drawer')
   const [fighter2Class, setFighter2Class] = useState('drawer')
   const [winner, setWinner] = useState(null)
-  const [method, setMethod] = useState('Method')
+  const [method, setMethod] = useState(null)
   const predictions = useContext(PredictionsContext)
 
   const handleClickFighter1 = () => {
     if (fighter1Class === 'winner') {
       setFighter1Class('drawer')
       setFighter2Class('drawer')
-      setMethod('Method')
+      setMethod(null)
       setWinner(null)
-      updatePrediction(winner,method)
+      updatePrediction(null,null)
     } else {
       setFighter1Class('winner')
       setFighter2Class('loser')
-      setWinner(`${fighter1.FirstName} ${fighter1.LastName}`)
-      updatePrediction(winner,method)
+      const updatedWinner = `${fighter1.FirstName} ${fighter1.LastName}`
+      const updatedMethod = method
+      setWinner(updatedWinner)
+      updatePrediction(updatedWinner, updatedMethod)
     }
   }
-
+  
   const handleClickFighter2 = () => {
     if (fighter2Class === 'winner') {
       setFighter1Class('drawer')
       setFighter2Class('drawer')
-      setMethod('Method')
+      setMethod(null)
       setWinner(null)
-      updatePrediction(winner,method)
+      updatePrediction(null,null)
     } else {
       setFighter2Class('winner')
       setFighter1Class('loser')
-      setWinner(`${fighter2.FirstName} ${fighter2.LastName}`)
-      updatePrediction(winner,method)
+      const updatedWinner = `${fighter2.FirstName} ${fighter2.LastName}`
+      const updatedMethod = method
+      setWinner(updatedWinner)
+      updatePrediction(updatedWinner, updatedMethod)
     }
   }
+  
 
   const handleMethodSelection = (method) => {
     setMethod(method)
@@ -48,8 +53,7 @@ const MatchUp = ({ fighters }) => {
   }
 
   const updatePrediction = (winner, method) => {
-    if (!winner || !method) predictions[fight] = null
-    predictions[fight] = `${winner} by ${method}`
+    if (!winner || !method) {predictions[fight] = null} else {predictions[fight] = `${winner} by ${method}`}
   }
 
   return (
@@ -73,7 +77,7 @@ const MatchUp = ({ fighters }) => {
           {fighter2.FirstName} {fighter2.LastName}
         </button>
         <div className="dropdown">
-          <button className="dropbtn">{method}</button>
+          <button className="dropbtn">{method || 'Method'}</button>
           <div className="dropdown-content">
             <button onClick={() => handleMethodSelection('KO / TKO')}>KO / TKO</button>
             <button onClick={() => handleMethodSelection('Submission')}>Submission</button>
