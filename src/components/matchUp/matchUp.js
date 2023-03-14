@@ -9,7 +9,7 @@ const MatchUp = ({ fighters }) => {
   const [fighter2Class, setFighter2Class] = useState('drawer')
   const [winner, setWinner] = useState(null)
   const [method, setMethod] = useState(null)
-  const { predictions, setPredictions } = useContext(PredictionsContext)
+  const { setPredictions } = useContext(PredictionsContext)
 
   const updatePrediction = (winner, method) => {
     if (method === 'Draw') {
