@@ -104,4 +104,16 @@ describe('FightCard component', () => {
     });
     expect(getAllByTestId('matchUpTestId').length).toBe(2);
   });
+
+  test('renders the under card', () => {
+    const { getAllByTestId, getByTestId } = render(<FightCard matchUps={mockCard} />);
+    const underCardBtn = getByTestId("underCardBtnTestId")
+    const mainCardBtn = getByTestId("mainCardBtnTestId")
+
+    act(() => {
+      underCardBtn.click()
+      mainCardBtn.click()
+    });
+    expect(getAllByTestId('matchUpTestId').length).toBe(5);
+  });
 });
