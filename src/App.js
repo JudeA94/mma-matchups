@@ -9,7 +9,6 @@ const App = () => {
   const [eventId, setEventId] = useState(null)
   const [matchUps, setMatchUps] = useState(null)
   const [eventName, setEventName] = useState(null)
-  const [dataUrl, setDataUrl] = useState(null)
   const today = new Date()
   const currentYear = today.getFullYear()
 

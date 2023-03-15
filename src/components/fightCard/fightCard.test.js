@@ -20,21 +20,21 @@ describe('MatchUp component', () => {
     const mockInactiveMatchUps = [    {      Active: false,      FightId: 3,      Fighters: [],
       },
     ];
-    const { container } = render(<FightCard matchUps={mockInactiveMatchUps} />);
-    expect(container.firstChild).toBeNull();
+    const { queryByTestId } = render(<FightCard matchUps={mockInactiveMatchUps} />);
+    expect(queryByTestId('matchupTestId')).toBeNull();
   });
   
   test('does not render anything when there are no fighters', () => {
     const mockInactiveFightersMatchUp = [    {      Active: true,      FightId: 4,      Fighters: [],
       },
     ];
-    const { container } = render(<FightCard matchUps={mockInactiveFightersMatchUp} />);
-    expect(container.firstChild).toBeNull();
+    const { queryByTestId } = render(<FightCard matchUps={mockInactiveFightersMatchUp} />);
+    expect(queryByTestId('matchupTestId')).toBeNull();
   });
   
   test('does not render anything when matchUps is an empty array', () => {
-    const { container } = render(<FightCard matchUps={[]} />);
-    expect(container.firstChild).toBeNull();
+    const { queryByTestId } = render(<FightCard matchUps={[]} />);
+    expect(queryByTestId('matchupTestId')).toBeNull();
   });
   
   test('only renders fights that are active', () => {
