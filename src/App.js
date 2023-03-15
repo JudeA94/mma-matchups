@@ -1,12 +1,10 @@
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState } from 'react'
 import FightCard from './components/fightCard/fightCard'
 import NavBar from './components/navBar/navBar'
 import './App.css'
 import Poster from './components/poster/poster'
-import html2canvas from 'html2canvas';
 
 const App = () => {
-  const captureRef = useRef(null);
   const [schedule, setSchedule] = useState(null)
   const [eventId, setEventId] = useState(null)
   const [matchUps, setMatchUps] = useState(null)
@@ -46,16 +44,11 @@ const App = () => {
       .catch((err) => console.error(err))
   }
 
-  const handleCaptureScreenshot = () => {
-    html2canvas(captureRef.current).then(canvas => {
-      const dataUrl = canvas.toDataURL();
-      setDataUrl(dataUrl)
-    });
-  }
+  
   
 
   return (
-    <div className="App" ref={captureRef}>
+    <div className="App">
       {schedule && (
           <div>
             <NavBar
@@ -83,8 +76,7 @@ const App = () => {
           </div>
         )}
       </div>
-      <button onClick={handleCaptureScreenshot}>Capture Screenshot</button>
-      {dataUrl && <img src={dataUrl} alt="..."/>}
+      
     </div>
   )
 }
