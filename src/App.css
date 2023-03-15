@@ -4,10 +4,11 @@
 
 .container {
   display: grid;
-  grid-template-columns: 1fr 4fr 1fr;
+  grid-template-columns: 2fr 7fr 2fr;
 }
 
 .poster1 {
+  margin-top: 50px;
   grid-column: 1 / 2;
 }
 
@@ -16,6 +17,7 @@
 }
 
 .poster2 {
+  margin-top: 50px;
   grid-column: 3 / 4;
 }
 
