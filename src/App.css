@@ -66,7 +66,7 @@ button {
 }
 
 .dropbtn {
-  background-color: #04AA6D;
+  background-color: rgb(243, 131, 3);
   color: white;
   padding: 16px;
   font-size: 16px;
@@ -99,7 +99,7 @@ button {
 
 .dropdown:hover .dropdown-content {display: block;}
 
-.dropdown:hover .dropbtn {background-color: #3e8e41;}
+.dropdown:hover .dropbtn {background-color: #ffbb00;}
 
 .navBar {
   display: flex;
@@ -117,7 +117,7 @@ button {
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgb(243, 131, 3);
+  background-color: rgb(243, 107, 3);
   width: 300px;
 }
 
