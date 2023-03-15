@@ -71,7 +71,7 @@ const MatchUp = ({ fighters }) => {
   }
 
   return (
-    <div className="matchUp">
+    <div className="matchUp" data-testid="matchUpTestId">
       <div className="fighters">
         <button
           className={fighter1Class}
