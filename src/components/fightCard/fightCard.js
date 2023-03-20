@@ -2,6 +2,7 @@ import { useState, useEffect, useContext, useRef } from 'react'
 import MatchUp from '../matchUp/matchUp'
 import { PredictionsContext } from '../../context/predictionsContext'
 import html2canvas from 'html2canvas'
+import ShareButtons from '../shareButtons/shareButtons'
 
 const FightCard = ({ matchUps }) => {
   const captureRef = useRef(null)
@@ -10,6 +11,8 @@ const FightCard = ({ matchUps }) => {
   const [undercard, setUnderCard] = useState(null)
   const [viewMainCard, setViewMainCard] = useState(true)
   const [picksShareUrl, setPicksShareUrl] = useState(null)
+  const [updated, setUpdated] = useState(null)
+
 
   useEffect(() => {
     const activeMatches = matchUps.filter(
@@ -27,6 +30,7 @@ const FightCard = ({ matchUps }) => {
     html2canvas(captureRef.current).then((canvas) => {
       const picksShareUrl = canvas.toDataURL()
       setPicksShareUrl(picksShareUrl)
+      setUpdated(true)
     })
   }
 
@@ -59,6 +63,7 @@ const FightCard = ({ matchUps }) => {
       <button onClick={() => console.log(predictions)}>Save Predictions</button>
       <button onClick={handleCaptureScreenshot}>Capture Screenshot</button>
       {picksShareUrl && <img src={picksShareUrl} alt="..." />}
+      {picksShareUrl && <ShareButtons picksShareUrl={picksShareUrl} updated={updated}/>}
     </>
   )
 }
