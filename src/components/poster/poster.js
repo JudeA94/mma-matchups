@@ -23,7 +23,7 @@ function Poster({eventName}) {
   }, [])
 
   return (
-    <div>{posterImageURL && <img src={posterImageURL} alt={`${eventName} + poster`} />}</div>
+    <div>{posterImageURL && <img src={posterImageURL} alt={`${eventName} poster`} />}</div>
   )
 }
 
