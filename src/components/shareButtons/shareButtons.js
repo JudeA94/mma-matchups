@@ -26,10 +26,10 @@ const ShareButtons = ({picksShareUrl, updated}) => {
       <RedditShareButton url={url}>
         <RedditIcon size={40} />
       </RedditShareButton>
-      <TwitterShareButton url={url}>
+      <TwitterShareButton url={url} media={url}>
         <TwitterIcon size={40} />
       </TwitterShareButton>
-      <WhatsappShareButton url={url}>
+      <WhatsappShareButton url={url} media={url}>
         <WhatsappIcon size={40} />
       </WhatsappShareButton>
     </div>

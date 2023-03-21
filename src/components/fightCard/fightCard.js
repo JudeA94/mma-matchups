@@ -13,7 +13,6 @@ const FightCard = ({ matchUps }) => {
   const [picksShareUrl, setPicksShareUrl] = useState(null)
   const [updated, setUpdated] = useState(null)
 
-
   useEffect(() => {
     const activeMatches = matchUps.filter(
       (match) => match.Active && match.Fighters.length,
@@ -26,12 +25,20 @@ const FightCard = ({ matchUps }) => {
     card === 'Main' ? setViewMainCard(true) : setViewMainCard(false)
   }
 
-  const handleCaptureScreenshot = () => {
-    html2canvas(captureRef.current).then((canvas) => {
-      const picksShareUrl = canvas.toDataURL()
-      setPicksShareUrl(picksShareUrl)
-      setUpdated(true)
-    })
+  const handleCaptureScreenshot = async () => {
+    const canvas = await html2canvas(captureRef.current)
+    const blob = await new Promise((resolve) =>
+      canvas.toBlob(resolve, 'image/png'),
+    )
+    const downloadLink = document.createElement('a')
+    downloadLink.href = URL.createObjectURL(blob)
+    downloadLink.download = 'screenshot.png'
+    document.body.appendChild(downloadLink)
+    downloadLink.click()
+    document.body.removeChild(downloadLink)
+    const imageUrl = URL.createObjectURL(blob)
+    setPicksShareUrl(imageUrl)
+    setUpdated(true)
   }
 
   return (
@@ -63,7 +70,9 @@ const FightCard = ({ matchUps }) => {
       <button onClick={() => console.log(predictions)}>Save Predictions</button>
       <button onClick={handleCaptureScreenshot}>Capture Screenshot</button>
       {picksShareUrl && <img src={picksShareUrl} alt="..." />}
-      {picksShareUrl && <ShareButtons picksShareUrl={picksShareUrl} updated={updated}/>}
+      {picksShareUrl && (
+        <ShareButtons picksShareUrl={picksShareUrl} updated={updated} />
+      )}
     </>
   )
 }
